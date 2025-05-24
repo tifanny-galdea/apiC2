@@ -111,7 +111,7 @@ export const putProductos = async(req,res) =>{
     }
 }
 
-// ACTUALIZAR SOLO ALGUNOS CAMPOS (patch)
+// ACTUALIZAR SOLO ALGUNOS CAMPOS (patch) .
 export const patchProductos = async(req,res) =>{
     try{
         const { id } = req.params; //parametro de la URL
