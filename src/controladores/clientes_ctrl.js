@@ -6,7 +6,7 @@ export const obtenerClientes=(req,res) =>{
 
 export const getClientes= async(req,res) =>{
     try{
-        const [result] = await conmysql.query('Select * from clientes')
+        const [result] = await conmysql.query('SELECT * FROM clientes WHERE cli_estado = "A"')
         res.json({
             cant:result.length, data:result
         })
@@ -67,9 +67,9 @@ export const putClientes= async(req,res) =>{
 export const patchClientes= async(req,res) =>{
     try {
         const {id} = req.params;
-        const {cli_identificacion, cli_nombre, cli_telefono, cli_correo, cli_direccion, cli_pais, cli_ciudad} = req.body;
-        const [result] = await conmysql.query('UPDATE clientes SET cli_identificacion = IFNULL(?, cli_identificacion), cli_nombre = IFNULL(?, cli_nombre), cli_telefono = IFNULL(?, cli_telefono), cli_correo = IFNULL(?, cli_correo), cli_direccion = IFNULL(?, cli_direccion), cli_pais = IFNULL(?, cli_pais), cli_ciudad = IFNULL(?, cli_ciudad) WHERE cli_id = ?',
-        [cli_identificacion, cli_nombre, cli_telefono, cli_correo, cli_direccion, cli_pais, cli_ciudad, id])
+        const {cli_identificacion, cli_nombre, cli_telefono, cli_correo, cli_direccion, cli_pais, cli_ciudad, cli_estado} = req.body;
+        const [result] = await conmysql.query('UPDATE clientes SET cli_identificacion = IFNULL(?, cli_identificacion), cli_nombre = IFNULL(?, cli_nombre), cli_telefono = IFNULL(?, cli_telefono), cli_correo = IFNULL(?, cli_correo), cli_direccion = IFNULL(?, cli_direccion), cli_pais = IFNULL(?, cli_pais), cli_ciudad = IFNULL(?, cli_ciudad), cli_estado = IFNULL(?, cli_estado) WHERE cli_id = ?',
+        [cli_identificacion, cli_nombre, cli_telefono, cli_correo, cli_direccion, cli_pais, cli_ciudad, cli_estado, id])
         
         if(result.affectedRows<=0)return res.status(404).json({
             message: "Cliente no Encontrado"
@@ -96,8 +96,3 @@ export const deleteClientes= async(req,res) =>{
         return res.status(500).json({message:" error en el servidor"})
     }
 }
-
-
-////// TAREA - BUSCAR CÓDIGOS DE ERRORES MÁS COMUNES EN UNA APP
-////// PRODUCTOS // FOTO // SERVIDOR DE ARCHIVOS / SOLO COMENTAR O ENVIAR TEXTO
-///// Hacer todos los métodos para todas las tablas
