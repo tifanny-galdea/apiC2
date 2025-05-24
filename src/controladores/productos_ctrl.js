@@ -37,8 +37,8 @@ export const postProdu = async (req, res) => {
             prod_nombre,
             prod_stock,
             prod_precio,
-            prod_activo
         } = req.body;
+        const prod_activo = 1;
         const prod_imagen = req.file ? `/uploads/${req.file.filename}`:null;
         console.log("Archivo Imagen:", req.file);
 
