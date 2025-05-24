@@ -113,7 +113,7 @@ export const putProductos = async(req,res) =>{
 // ACTUALIZAR SOLO ALGUNOS CAMPOS (patch) .
 export const patchProductos = async(req,res) =>{
     try{
-        console.log('req.file:', req.file); 
+        console.log('req.file:', JSON.stringify(req.file, null, 2));
         const { id } = req.params; //parametro de la URL
         const { prod_codigo, prod_nombre, prod_stock, prod_precio, prod_activo } = req.body; //cuerpo de la solicitud
         const prod_imagen = req.file?.path || null;
