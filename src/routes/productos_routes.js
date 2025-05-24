@@ -1,19 +1,12 @@
 import { Router } from "express";
 import multer from 'multer'
+import { storage } from '../cloudinary.js';
 
 import { getProductos, postProductos, putProductos, patchProductos, deleteProductos, postProdu, getProductoID } from "../controladores/productos_ctrl.js";
 
 //configurar multer
-const storage = multer.diskStorage({
-    destination:(req, file, cb)=>{
-        cb(null, 'uploads'); //carpeta donde están las imagenes
-    },
-    filename:(req, file, cb)=>{
-        cb(null, `${Date.now()}-${(file.originalname)}`);
-    }
-})
+const upload = multer({ storage });
 
-const upload = multer({ storage })
 const router = Router()
 
 router.get('/productos', getProductos);
