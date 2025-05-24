@@ -39,7 +39,7 @@ export const postProdu = async (req, res) => {
             prod_precio,
             prod_activo
         } = req.body;
-        const prod_imagen = req.file ? `/uploads/${req.file.filename}`:null;
+        const prod_imagen = req.file ? `uploads/${req.file.filename}`:null;
         console.log("Archivo Imagen:", req.file);
 
         const [fila] = await conmysql.query('SELECT *FROM productos WHERE prod_codigo=?', [prod_codigo])
@@ -48,7 +48,7 @@ export const postProdu = async (req, res) => {
             message: "Producto con codigo: " + prod_codigo + ' ya está registrado' 
         })
 
-        const[rows] = await conmysql.query('INSERT INTO productos (prod_codigo, prod_nombre, prod_stock, prod_precio, prod_activo, prod_imagen) VALUES  (?,?,?,?,?,?)',
+        const[rows] = await conmysql.query('INSERT INTO productos (prod_codigo, prod_nombre, prod_stock, prod_precio, prod_activo, prod_imagen) VALUES  (?,?,?,?,1,?)',
             [ prod_codigo, prod_nombre, prod_stock, prod_precio, prod_activo, prod_imagen ]
         )
 
