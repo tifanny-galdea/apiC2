@@ -137,8 +137,6 @@ export const patchProductos = async(req,res) =>{
     }
 }
 
-//bien, resuelto. Ahora no me funciona el patch correctamente porque por ejemplo, solo edité un campo y me dijo error al registrar
-
 // ELIMINAR (delete)
 export const deleteProductos = async(req,res) =>{
     try{
