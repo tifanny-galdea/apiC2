@@ -48,7 +48,7 @@ export const postProdu = async (req, res) => {
             message: "Producto con codigo: " + prod_codigo + ' ya está registrado' 
         })
 
-        const[rows] = await conmysql.query('INSERT INTO productos (prod_codigo, prod_nombre, prod_stock, prod_precio, prod_activo, prod_imagen) VALUES  (?,?,?,?,1,?)',
+        const[rows] = await conmysql.query('INSERT INTO productos (prod_codigo, prod_nombre, prod_stock, prod_precio, prod_activo, prod_imagen) VALUES  (?,?,?,?,?,?)',
             [ prod_codigo, prod_nombre, prod_stock, prod_precio, prod_activo, prod_imagen ]
         )
 
