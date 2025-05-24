@@ -39,7 +39,7 @@ export const postProdu = async (req, res) => {
             prod_precio,
         } = req.body;
         const prod_activo = 1;
-        const prod_imagen = req.file ? req.file.path || req.file.secure_url : null; // URL de Cloudinary
+        const prod_imagen = req.file ? req.file.secure_url : null; // URL de Cloudinary
         
         const [fila] = await conmysql.query('SELECT *FROM productos WHERE prod_codigo=?', [prod_codigo])
         if (fila.length > 0)return res.status(404).json({
@@ -115,7 +115,7 @@ export const patchProductos = async(req,res) =>{
     try{
         const { id } = req.params; //parametro de la URL
         const { prod_codigo, prod_nombre, prod_stock, prod_precio, prod_activo } = req.body; //cuerpo de la solicitud
-        const prod_imagen = req.file ? req.file.path || req.file.secure_url : null;
+        const prod_imagen = req.file ? req.file.secure_url : null; 
         
 
         const [result] = await conmysql.query(
