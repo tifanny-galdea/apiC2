@@ -127,7 +127,7 @@ export const patchProductos = async(req,res) =>{
             message: "Producto no Encontrado"
         })
 
-        const [row] = await conmysql.query('SELECT * FROM productos WHERE prod_id = ?', [id]);
+        const [row] = await conmysql.query('SELECT * FROM productos WHERE prod_id = ?', [req.params.id]);
         res.json(row[0]);
 
 
