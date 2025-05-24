@@ -39,7 +39,7 @@ export const postProdu = async (req, res) => {
             prod_precio,
             prod_activo
         } = req.body;
-        const prod_imagen = req.file ? `uploads/${req.file.filename}`:null;
+        const prod_imagen = req.file ? `/uploads/${req.file.filename}`:null;
         console.log("Archivo Imagen:", req.file);
 
         const [fila] = await conmysql.query('SELECT *FROM productos WHERE prod_codigo=?', [prod_codigo])
@@ -136,6 +136,8 @@ export const patchProductos = async(req,res) =>{
         })
     }
 }
+
+//bien, resuelto. Ahora no me funciona el patch correctamente porque por ejemplo, solo edité un campo y me dijo error al registrar
 
 // ELIMINAR (delete)
 export const deleteProductos = async(req,res) =>{
