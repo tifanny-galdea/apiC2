@@ -34,7 +34,7 @@ export const postClientes= async(req,res) =>{
     try {
         const {cli_identificacion, cli_nombre, cli_telefono, cli_correo, cli_direccion, cli_pais, cli_ciudad} = req.body;
         console.log(req.body);
-        const [result] = await conmysql.query('INSERT INTO clientes(cli_identificacion, cli_nombre, cli_telefono, cli_correo, cli_direccion, cli_pais, cli_ciudad) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        const [result] = await conmysql.query('INSERT INTO clientes(cli_identificacion, cli_nombre, cli_telefono, cli_correo, cli_direccion, cli_pais, cli_ciudad, cli_estado) VALUES (?, ?, ?, ?, ?, ?, ?, A)',
         [cli_identificacion, cli_nombre, cli_telefono, cli_correo, cli_direccion, cli_pais, cli_ciudad])
         res.send({
             cli_id: result.insertId
