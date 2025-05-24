@@ -15,10 +15,7 @@ const storage = new CloudinaryStorage({
   params: {
     folder: 'productos', // carpeta en Cloudinary
     allowed_formats: ['jpg', 'png', 'jpeg'],
-    public_id: (req, file)  => {
-      const nombreSinExt = path.parse(file.originalname).name; // nombre sin extensión
-      return `${Date.now()}-${nombreSinExt}`;
-    }
+    public_id: (req, file) => `${Date.now()}-${file.originalname}`
   }
 });
 
