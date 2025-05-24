@@ -120,7 +120,7 @@ export const patchProductos = async(req,res) =>{
 
         const [result] = await conmysql.query(
             'UPDATE productos SET prod_codigo = IFNULL(?, prod_codigo), prod_nombre = IFNULL(?, prod_nombre), prod_stock = IFNULL(?, prod_stock), prod_precio = IFNULL(?, prod_precio), prod_activo = IFNULL(?, prod_activo), prod_imagen = IFNULL(?, prod_imagen) WHERE prod_id = ?',
-            [prod_codigo || null, prod_nombre || null, prod_stock || null, prod_precio || null, prod_activo || null, prod_imagen, id]
+            [prod_codigo, prod_nombre, prod_stock, prod_precio, prod_activo, prod_imagen, id]
         )
 
         if(result.affectedRows<=0)return res.status(404).json({
