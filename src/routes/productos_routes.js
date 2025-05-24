@@ -21,7 +21,7 @@ router.get('/productos/:id', getProductoID);
 //router.post('/productos', postProductos);
 router.post('/productos', upload.single('prod_imagen'), postProdu);
 router.put('/productos/:id', putProductos);
-router.patch('/productos/:id', patchProductos);
+router.patch('/productos/:id', upload.single('prod_imagen'), patchProductos);
 router.delete('/productos/:id', deleteProductos);
 
 export default router

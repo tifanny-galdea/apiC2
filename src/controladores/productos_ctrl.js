@@ -3,7 +3,7 @@ import { conmysql } from "../bd.js";
 // PRESENTAR (get)
 export const getProductos = async(req,res) => {
     try{
-        const [result] = await conmysql.query('SELECT * FROM productos');
+        const [result] = await conmysql.query('SELECT * FROM productos WHERE prod_activo=1');
         res.json({
             cant: result.length,
             data: result
@@ -115,7 +115,9 @@ export const putProductos = async(req,res) =>{
 export const patchProductos = async(req,res) =>{
     try{
         const { id } = req.params; //parametro de la URL
-        const { prod_codigo, prod_nombre, prod_stock, prod_precio, prod_activo, prod_imagen } = req.body; //cuerpo de la solicitud
+        const { prod_codigo, prod_nombre, prod_stock, prod_precio, prod_activo } = req.body; //cuerpo de la solicitud
+        const prod_imagen = req.file ? `/uploads/${req.file.filename}` : null;
+
         const [result] = await conmysql.query(
             'UPDATE productos SET prod_codigo = IFNULL(?, prod_codigo), prod_nombre = IFNULL(?, prod_nombre), prod_stock = IFNULL(?, prod_stock), prod_precio = IFNULL(?, prod_precio), prod_activo = IFNULL(?, prod_activo), prod_imagen = IFNULL(?, prod_imagen) WHERE prod_id = ?',
             [prod_codigo, prod_nombre, prod_stock, prod_precio, prod_activo, prod_imagen, id]
