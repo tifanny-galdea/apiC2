@@ -17,11 +17,13 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 //definir permisos
-const corsOptions = {
-    origin: '*', //se puede poner la dirección del dominio del servidor, en este caso es de cualquiera
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    credentials: false
-}
+const cors = require('cors');
+app.use(cors({
+  origin: '*', //se puede poner la dirección del dominio del servidor, en este caso es de cualquiera
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 
 const app = express();
 
