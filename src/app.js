@@ -39,9 +39,10 @@ app.use('/api', usuariosRoutes);
 
 
 app.use((req,resp,next) =>{
-    resp.status(400).json({
-        message: 'Endponit not found'
-    })
+    app.use((req, res, next) => {
+    res.setHeader('Content-Type', 'application/json');
+    next();
+    });
 }
 )
 
