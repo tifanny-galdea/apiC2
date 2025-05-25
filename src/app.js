@@ -17,13 +17,11 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 //definir permisos
-const cors = require('cors');
-app.use(cors({
+const corsOptions = {
   origin: '*', //se puede poner la dirección del dominio del servidor, en este caso es de cualquiera
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
-}));
-
+};
 
 const app = express();
 
@@ -40,12 +38,8 @@ app.use('/api', productosRoutes);
 app.use('/api', usuariosRoutes);
 
 
-app.use((req,resp,next) =>{
-    app.use((req, res, next) => {
-    res.setHeader('Content-Type', 'application/json');
-    next();
-    });
-}
-)
+app.use((req, res, next) => {
+  res.status(404).json({ message: 'Endpoint not found' });
+});
 
 export default app;
