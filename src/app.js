@@ -19,8 +19,7 @@ const __dirname = path.dirname(__filename)
 //definir permisos
 const corsOptions = {
     origin: '*', //se puede poner la dirección del dominio del servidor, en este caso es de cualquiera
-    methos: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    credential: true
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 }
 
 const app = express();
