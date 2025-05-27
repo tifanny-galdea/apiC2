@@ -18,11 +18,11 @@ const __dirname = path.dirname(__filename)
 
 //definir permisos
 const corsOptions = {
-    origin: ['https://apiciclo2.onrender.com'],
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-};
+  origin: '*', // permitir todas las peticiones, al menos para test
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}
 
 const app = express();
 
