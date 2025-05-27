@@ -21,7 +21,6 @@ const corsOptions = {
   origin: '*', // permitir todas las peticiones, al menos para test
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
 }
 
 const app = express();
