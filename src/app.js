@@ -18,14 +18,10 @@ const __dirname = path.dirname(__filename)
 
 //definir permisos
 const corsOptions = {
-    origin: true, // Permite cualquier origen
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
+    origin: '*', //se puede poner la dirección del dominio del servidor, en este caso es de cualquiera
+    methos: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    credential: true
 }
-
-app.use(cors());
-
 
 const app = express();
 
@@ -41,10 +37,12 @@ app.use('/api', detallePedidoRoutes);
 app.use('/api', productosRoutes);
 app.use('/api', usuariosRoutes);
 
-app.use((req, res, next) => {
-    res.setHeader('Content-Type', 'application/json');
-    next();
-});
 
+app.use((req,resp,next) =>{
+    resp.status(400).json({
+        message: 'Endponit not found'
+    })
+}
+)
 
 export default app;
