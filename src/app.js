@@ -38,5 +38,10 @@ app.use('/api', detallePedidoRoutes);
 app.use('/api', productosRoutes);
 app.use('/api', usuariosRoutes);
 
+app.use((req, res, next) => {
+    res.setHeader('Content-Type', 'application/json');
+    next();
+});
+
 
 export default app;
