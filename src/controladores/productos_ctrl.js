@@ -29,6 +29,25 @@ export const getProductoID= async(req,res) =>{
     }
 }
 
+//buscar productos por nombre
+export const buscarProductos = async (req, res) => {
+    try {
+        const { nombre } = req.query;
+        const [result] = await conmysql.query(
+            'SELECT * FROM productos WHERE prod_nombre LIKE ? AND prod_activo = 1',
+            [`%${nombre}%`]
+        );
+        res.json({
+            cant: result.length,
+            data: result
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: "Error en el servidor"
+        });
+    }
+};
+
 //post
 export const postProdu = async (req, res) => {
     try{
